@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(MainActivity.this,
-                        ColorPicker.class);
+                        Notes.class);
                 startActivity(myIntent);
             }
         });
