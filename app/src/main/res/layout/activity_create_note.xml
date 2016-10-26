@@ -30,7 +30,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             app:srcCompat="@drawable/green_dot"
-            android:id="@+id/imp" />
+            android:id="@+id/imp"
+            android:onClick="ChangeImp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -47,7 +48,8 @@
             android:layout_weight="1"
             android:textSize="18sp"
             android:layout_marginTop="20dp"
-            android:gravity="center" />
+            android:gravity="center"
+            android:onClick="setTime"/>
 
         <TextView
             android:text="Date"
@@ -57,13 +59,15 @@
             android:layout_weight="1"
             android:textSize="18sp"
             android:layout_marginTop="20dp"
-            android:gravity="center" />
+            android:gravity="center"
+            android:onClick="setDate"/>
 
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
             app:srcCompat="@drawable/image"
-            android:id="@+id/image" />
+            android:id="@+id/image"
+            android:onClick="ChooseImage"/>
 
     </LinearLayout>
 

@@ -8,13 +8,15 @@ import java.util.Date;
  */
 
 class Note {
+    public Integer Id;
     public String Title;
     public String Description;
     public int Importance; //1 2 3
     public Calendar DateTime;
     public String Image;
 
-    Note(String title, String desc, int imp, Calendar datetime, String image){
+    Note(Integer id, String title, String desc, int imp, Calendar datetime, String image){
+        Id = id;
         Title = title;
         Description = desc;
         Importance = imp;
