@@ -6,6 +6,9 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.app.Dialog;
@@ -31,6 +34,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -59,6 +63,7 @@ public class CreateNote extends AppCompatActivity implements DatePickerDialog.On
         desc = (EditText) findViewById(R.id.editDesc);
         imp = (ImageView) findViewById(R.id.imp);
         image = (ImageView) findViewById(R.id.image);
+        image.setScaleType(ImageView.ScaleType.CENTER_CROP);
         time = (TextView) findViewById(R.id.textTime);
         date = (TextView) findViewById(R.id.textDate);
 
@@ -76,7 +81,7 @@ public class CreateNote extends AppCompatActivity implements DatePickerDialog.On
             id = currentIntent.getIntExtra("Id", 0);
             //title.setText("New note");
             imp.setImageResource(R.drawable.green_dot);
-            image.setImageResource(R.drawable.image);
+            image.setImageBitmap(BitmapLoader.decodeBitmapFromResource(getResources(), R.drawable.image, 60,60));
             Calendar now = Calendar.getInstance();
 
             time.setText(CalendarConverter.getTime(now));
@@ -107,7 +112,13 @@ public class CreateNote extends AppCompatActivity implements DatePickerDialog.On
                     break;
             }
             imp.setImageResource(imp_style);
-            image.setImageResource(R.drawable.image);
+            image_path = currentIntent.getStringExtra("Image");
+            if(image_path.equals("")){
+                image.setImageBitmap(BitmapLoader.decodeBitmapFromResource(getResources(), R.drawable.image, 60,60));
+            }
+            else{
+                image.setImageBitmap(BitmapLoader.decodeBitmapFromPath(image_path,60,60));
+            }
             time.setText(currentIntent.getStringExtra("Time"));
             date.setText(currentIntent.getStringExtra("Date"));
             desc.setText(currentIntent.getStringExtra("Description"));
@@ -149,31 +160,20 @@ public class CreateNote extends AppCompatActivity implements DatePickerDialog.On
 
     public void ChooseImage(View view){
         if(!action.equals("android.intent.myaction.WATCH")) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
-
-                // Should we show an explanation?
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                    // Show an expanation to the user *asynchronously* -- don't block
-                    // this thread waiting for the user's response! After the user
-                    // sees the explanation, try again to request the permission.
-                } else {
-                    // No explanation needed, we can request the permission.
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                            REQUEST_PERMISSION);
-                    // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                    // app-defined int constant. The callback method gets the
-                    // result of the request.
-                }
+            Intent i = new Intent(
+                    Intent.ACTION_PICK,
+                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(i, SELECT_PICTURE);
+        }
+        else{
+            if(!image_path.equals("")){
+                Intent myIntent = new Intent(CreateNote.this,
+                        ImageWatcher.class);
+                myIntent.putExtra("Image", image_path);
+                startActivity(myIntent);
             }
-            else {
-                Intent i = new Intent(
-                        Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-                startActivityForResult(i, SELECT_PICTURE);
+            else{
+                Toast.makeText(this, "There is no picture in this note", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -189,8 +189,8 @@ public class CreateNote extends AppCompatActivity implements DatePickerDialog.On
                     Log.i("A_R_T", "Image Path : " + image_path);
                     // Set the image in ImageView
                     image.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    image.setImageURI(selectedImageUri);
-
+                    //image.setImageURI(selectedImageUri);
+                    image.setImageBitmap(BitmapLoader.decodeBitmapFromPath(image_path,60,60));
                 }
             }
         }
@@ -203,30 +203,8 @@ public class CreateNote extends AppCompatActivity implements DatePickerDialog.On
         cursor.moveToFirst();
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         res = cursor.getString(column_index);
-
         cursor.close();
         return res;
-    }
-
-    @Override
-    public void onRequestPermissionsResult(final int requestCode, @NonNull final String[] permissions, @NonNull final int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case REQUEST_PERMISSION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    ChooseImage(image);
-
-                } else {
-
-                }
-                return;
-            }
-            // other 'case' lines to check for other
-            // permissions this app might request
-        }
     }
 
     public void ChangeImp(View view){

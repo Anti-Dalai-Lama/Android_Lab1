@@ -9,6 +9,11 @@
         app:showAsAction="always">
     </item>
 
+    <item android:id="@+id/filter_notes"
+        android:title="Filter"
+        android:icon="@drawable/ic_filter_list_white_24dp"
+        app:showAsAction="always">
+    </item>
     <item android:id="@+id/add_note_icon"
         android:title="Add"
         android:icon="@drawable/ic_note_add_white_24dp"

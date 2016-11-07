@@ -1,6 +1,9 @@
 package com.blablaarthur.lab1;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,6 +14,7 @@ import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -40,6 +44,7 @@ class NoteAdapter extends ArrayAdapter<Note> {
         Note item = getItem(position);
         TextView title = (TextView) myView.findViewById(R.id.titleTextView);
         TextView datetime = (TextView) myView.findViewById(R.id.dateTextView);
+
         ImageView image = (ImageView) myView.findViewById(R.id.noteImage);
         ImageView imp = (ImageView) myView.findViewById(R.id.impImage);
 
@@ -60,7 +65,12 @@ class NoteAdapter extends ArrayAdapter<Note> {
                 imp.setImageResource(R.drawable.red_dot);
         }
 
-        image.setImageResource(R.drawable.image);
+        if(item.Image.equals("")){
+            image.setImageBitmap(BitmapLoader.decodeBitmapFromResource(getContext().getResources(), R.drawable.image, 60,60));
+        }
+        else{
+            image.setImageBitmap(BitmapLoader.decodeBitmapFromPath(item.Image,60,60));
+        }
         return myView;
 
     }

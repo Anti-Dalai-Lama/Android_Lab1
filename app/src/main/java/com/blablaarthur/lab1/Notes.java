@@ -1,8 +1,11 @@
 package com.blablaarthur.lab1;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -157,9 +161,53 @@ public class Notes extends AppCompatActivity {
                         CreateNote.class);
                 myIntent.setAction("android.intent.myaction.CREATE");
                 startActivityForResult(myIntent, CREATE_NOTE);
+            case R.id.filter_notes:
+                AlertDialog.Builder adb = new AlertDialog.Builder(this);
+                adb.setTitle("Importance");
+                adb.setSingleChoiceItems(new CharSequence[]{"High", "Medium" ,"Low" ,"None"}, -1, selectImpFilter);
+                adb.setPositiveButton("Filter", selectImpFilter);
+                adb.setNegativeButton("Cancel", selectImpFilter);
+                adb.create();
+                adb.show();
         }
         return super.onOptionsItemSelected(item);
     }
+
+    DialogInterface.OnClickListener selectImpFilter = new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+            ListView lv = ((AlertDialog) dialog).getListView();
+            if(which == Dialog.BUTTON_POSITIVE){
+                List<Note> filter = new ArrayList<>();
+                switch (lv.getCheckedItemPosition()){
+                    case 0:
+                        for(Note n : notesAdapter.original){
+                            if(n.Importance == 2)
+                                filter.add(n);
+                        }
+                        notesAdapter.filtered = filter;
+                        break;
+                    case 1:
+                        for(Note n : notesAdapter.original){
+                            if(n.Importance == 1)
+                                filter.add(n);
+                        }
+                        notesAdapter.filtered = filter;
+                        break;
+                    case 2:
+                        for(Note n : notesAdapter.original){
+                            if(n.Importance == 0)
+                                filter.add(n);
+                        }
+                        notesAdapter.filtered = filter;
+                        break;
+                    case 3:
+                        notesAdapter.filtered = new ArrayList<Note>(notesAdapter.original);
+                        break;
+                }
+                notesAdapter.notifyDataSetChanged();
+            }
+        }
+    };
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

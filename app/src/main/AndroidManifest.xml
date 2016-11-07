@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.blablaarthur.lab1">
 
-    <permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -19,27 +19,31 @@
         </activity>
         <activity
             android:name=".ColorPicker"
-            android:label="ColorPicker"></activity>
+            android:label="ColorPicker" />
         <activity
             android:name=".Notes"
             android:label="Notes"
-            android:parentActivityName=".MainActivity"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".Calculator"
-            android:label="Calculator"></activity>
-        <activity android:name=".CreateNote" android:parentActivityName=".Notes">
+            android:label="Calculator" />
+        <activity
+            android:name=".CreateNote"
+            android:parentActivityName=".Notes">
             <action android:name="android.intent.myaction.CREATE" />
             <action android:name="android.intent.myaction.EDIT" />
             <action android:name="android.intent.myaction.WATCH" />
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Notes" />
         </activity>
+        <activity android:name=".ImageWatcher"></activity>
     </application>
 
 </manifest>
