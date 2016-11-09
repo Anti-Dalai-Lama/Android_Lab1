@@ -43,7 +43,6 @@ public class Notes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notes);
-        Log.d("A_R_T", "OnCreate");
         List<Note> notes = new ArrayList<>(1);
         notes.add(new Note(1, "Note 1", "Note 1 description", 1, Calendar.getInstance(), ""));
         notes.add(new Note(2, "Note 2", "Note 2 description", 2, Calendar.getInstance(), ""));
@@ -96,8 +95,8 @@ public class Notes extends AppCompatActivity {
         noteToDeleteEditId = notesAdapter.getItem(info.position).Id;
         Log.d("A_R_T", noteToDeleteEditId + "");
 
-        menu.add(0,0,0,"Edit");
-        menu.add(0,1,1,"Delete");
+        menu.add(0,0,0,R.string.edit);
+        menu.add(0,1,1,R.string.delete);
     }
 
     @Override
@@ -121,7 +120,6 @@ public class Notes extends AppCompatActivity {
                 startActivityForResult(myIntent, EDIT_NOTE);
                 break;
             case 1:
-                Log.d("A_R_T", "DELETE");
                 notesAdapter.removeById(current.Id);
                 notesAdapter.notifyDataSetChanged();
                 search_view.setQuery("", false);
@@ -163,10 +161,10 @@ public class Notes extends AppCompatActivity {
                 startActivityForResult(myIntent, CREATE_NOTE);
             case R.id.filter_notes:
                 AlertDialog.Builder adb = new AlertDialog.Builder(this);
-                adb.setTitle("Importance");
-                adb.setSingleChoiceItems(new CharSequence[]{"High", "Medium" ,"Low" ,"None"}, -1, selectImpFilter);
-                adb.setPositiveButton("Filter", selectImpFilter);
-                adb.setNegativeButton("Cancel", selectImpFilter);
+                adb.setTitle(R.string.importance);
+                adb.setSingleChoiceItems(new CharSequence[]{getString(R.string.high), getString(R.string.medium) ,getString(R.string.low) ,getString(R.string.none)}, -1, selectImpFilter);
+                adb.setPositiveButton(R.string.filter, selectImpFilter);
+                adb.setNegativeButton(R.string.cancel, selectImpFilter);
                 adb.create();
                 adb.show();
         }
@@ -215,7 +213,6 @@ public class Notes extends AppCompatActivity {
             Calendar c = Calendar.getInstance();
             String[] date = data.getStringExtra("Date").split("\\.");
             String[] time = data.getStringExtra("Time").split(":");
-            Log.d("A_R_T", date[0]);
             c.set(Integer.parseInt(date[2]), Integer.parseInt(date[1])-1, Integer.parseInt(date[0]), Integer.parseInt(time[0]), Integer.parseInt(time[1]));
             Note note_new = new Note(data.getIntExtra("Id", 0), data.getStringExtra("Title"), data.getStringExtra("Description"), data.getIntExtra("Importance", 0), c, data.getStringExtra("Image"));
 

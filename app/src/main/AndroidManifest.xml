@@ -19,10 +19,10 @@
         </activity>
         <activity
             android:name=".ColorPicker"
-            android:label="ColorPicker" />
+            android:label="@string/colorpicker" />
         <activity
             android:name=".Notes"
-            android:label="Notes"
+            android:label="@string/notes"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity">
             <meta-data
@@ -31,7 +31,7 @@
         </activity>
         <activity
             android:name=".Calculator"
-            android:label="Calculator" />
+            android:label="@string/calculator" />
         <activity
             android:name=".CreateNote"
             android:parentActivityName=".Notes">
@@ -43,7 +43,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Notes" />
         </activity>
-        <activity android:name=".ImageWatcher"></activity>
+        <activity android:name=".ImageWatcher" />
     </application>
 
 </manifest>

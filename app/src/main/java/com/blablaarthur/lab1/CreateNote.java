@@ -77,7 +77,7 @@ public class CreateNote extends AppCompatActivity implements DatePickerDialog.On
         Intent currentIntent = getIntent();
         action = currentIntent.getAction();
         if(action.equals("android.intent.myaction.CREATE")){
-            bar.setTitle("Create");
+            bar.setTitle(R.string.create);
             id = currentIntent.getIntExtra("Id", 0);
             //title.setText("New note");
             imp.setImageResource(R.drawable.green_dot);
@@ -88,11 +88,11 @@ public class CreateNote extends AppCompatActivity implements DatePickerDialog.On
             date.setText(CalendarConverter.getDate(now));
         }
         else{
-            bar.setTitle("Edit");
+            bar.setTitle(R.string.edit);
             if(action.equals("android.intent.myaction.WATCH")){
                 title.setFocusable(false);
                 desc.setFocusable(false);
-                bar.setTitle("Note");
+                bar.setTitle(R.string.note);
             }
             title.setText(currentIntent.getStringExtra("Title"));
             importance = 0;
@@ -152,7 +152,7 @@ public class CreateNote extends AppCompatActivity implements DatePickerDialog.On
                     finish();
                 }
                 else{
-                    Toast.makeText(CreateNote.this, "Fill empty fields", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CreateNote.this, R.string.fillemptyfields, Toast.LENGTH_LONG).show();
                 }
         }
         return super.onOptionsItemSelected(item);
@@ -186,7 +186,6 @@ public class CreateNote extends AppCompatActivity implements DatePickerDialog.On
                 if (null != selectedImageUri) {
                     // Get the path from the Uri
                     image_path = getPathFromURI(selectedImageUri);
-                    Log.i("A_R_T", "Image Path : " + image_path);
                     // Set the image in ImageView
                     image.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     //image.setImageURI(selectedImageUri);

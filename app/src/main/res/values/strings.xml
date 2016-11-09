@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab1</string>
+    <string name="app_name">Laba 1</string>
     <string name="c">1</string>
     <string name="b">←</string>
     <string name="n1">1</string>
@@ -18,4 +18,27 @@
     <string name="div">/</string>
     <string name="point">.</string>
     <string name="eq">=</string>
+    <string name="clear">C</string>
+
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="colorpicker">Color Picker</string>
+    <string name="calculator">Calculator</string>
+    <string name="notes">Notes</string>
+    <string name="create">Create</string>
+    <string name="note">Note</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+
+    <string name="fillemptyfields">Fill empty fields</string>
+    <string name="nopic">There is no picture in this note</string>
+
+    <string name="importance">Importance</string>
+    <string name="high">High</string>
+    <string name="medium">Medium</string>
+    <string name="low">Low</string>
+    <string name="none">None</string>
+    <string name="filter">Filter</string>
+    <string name="cancel">Cancel</string>
+
 </resources>

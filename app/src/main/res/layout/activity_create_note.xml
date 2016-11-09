@@ -24,7 +24,7 @@
             android:ems="10"
             android:id="@+id/editTitle"
             android:layout_weight="1"
-            android:hint="Title" />
+            android:hint="@string/title" />
 
         <ImageView
             android:layout_width="40dp"
@@ -41,7 +41,6 @@
         android:layout_marginTop="5dp">
 
         <TextView
-            android:text="Time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textTime"
@@ -52,7 +51,6 @@
             android:onClick="setTime"/>
 
         <TextView
-            android:text="Date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textDate"
@@ -78,6 +76,6 @@
         android:ems="10"
         android:id="@+id/editDesc"
         android:lineSpacingExtra="0sp"
-        android:hint="Description"
+        android:hint="@string/description"
         android:gravity="fill_horizontal" />
 </LinearLayout>
