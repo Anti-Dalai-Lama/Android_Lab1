@@ -23,7 +23,22 @@
 
     <string name="title">Название</string>
     <string name="description">Описание</string>
-    <string name="colorpicker">Выбор цвета</string>
+    <string name="colorpicker">Выбор Цвета</string>
     <string name="calculator">Калькулятор</string>
     <string name="notes">Заметки</string>
+    <string name="create">Создать</string>
+    <string name="note">Заметка</string>
+    <string name="edit">Редактировать</string>
+    <string name="delete">Удалить</string>
+
+    <string name="fillemptyfields">Заполните пустые поля</string>
+    <string name="nopic">У заметки нет изображения</string>
+
+    <string name="importance">Важность</string>
+    <string name="high">Высокая</string>
+    <string name="medium">Средняя</string>
+    <string name="low">Низкая</string>
+    <string name="none">Любая</string>
+    <string name="filter">Фильтровать</string>
+    <string name="cancel">Отмена</string>
 </resources>
