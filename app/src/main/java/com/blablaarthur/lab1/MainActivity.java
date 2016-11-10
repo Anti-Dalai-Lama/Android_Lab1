@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
                             Manifest.permission.READ_EXTERNAL_STORAGE,
                     },
                     PERMISSION_REQUEST_CODE);
-
         }
 
         color = (Button) findViewById(R.id.color);
