@@ -30,6 +30,7 @@
     <string name="note">Заметка</string>
     <string name="edit">Редактировать</string>
     <string name="delete">Удалить</string>
+    <string name="picture">Изображение</string>
 
     <string name="fillemptyfields">Заполните пустые поля</string>
     <string name="nopic">У заметки нет изображения</string>
@@ -39,6 +40,9 @@
     <string name="medium">Средняя</string>
     <string name="low">Низкая</string>
     <string name="none">Любая</string>
-    <string name="filter">Фильтровать</string>
+    <string name="tofilter">Фильтровать</string>
     <string name="cancel">Отмена</string>
+    <string name="save">Сохранить</string>
+    <string name="filter">Фильтр</string>
+    <string name="search">Поиск</string>
 </resources>

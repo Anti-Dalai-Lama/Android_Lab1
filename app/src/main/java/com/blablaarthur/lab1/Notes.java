@@ -38,6 +38,7 @@ public class Notes extends AppCompatActivity {
     MenuItem search_menu_item;
     private static final int CREATE_NOTE = 101;
     private static final int EDIT_NOTE = 102;
+    private int FILTER = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,14 +160,16 @@ public class Notes extends AppCompatActivity {
                         CreateNote.class);
                 myIntent.setAction("android.intent.myaction.CREATE");
                 startActivityForResult(myIntent, CREATE_NOTE);
+                break;
             case R.id.filter_notes:
                 AlertDialog.Builder adb = new AlertDialog.Builder(this);
                 adb.setTitle(R.string.importance);
-                adb.setSingleChoiceItems(new CharSequence[]{getString(R.string.high), getString(R.string.medium) ,getString(R.string.low) ,getString(R.string.none)}, -1, selectImpFilter);
-                adb.setPositiveButton(R.string.filter, selectImpFilter);
+                adb.setSingleChoiceItems(new CharSequence[]{getString(R.string.high), getString(R.string.medium) ,getString(R.string.low) ,getString(R.string.none)}, FILTER, selectImpFilter);
+                adb.setPositiveButton(R.string.tofilter, selectImpFilter);
                 adb.setNegativeButton(R.string.cancel, selectImpFilter);
                 adb.create();
                 adb.show();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -183,6 +186,7 @@ public class Notes extends AppCompatActivity {
                                 filter.add(n);
                         }
                         notesAdapter.filtered = filter;
+                        FILTER = 0;
                         break;
                     case 1:
                         for(Note n : notesAdapter.original){
@@ -190,6 +194,7 @@ public class Notes extends AppCompatActivity {
                                 filter.add(n);
                         }
                         notesAdapter.filtered = filter;
+                        FILTER = 1;
                         break;
                     case 2:
                         for(Note n : notesAdapter.original){
@@ -197,9 +202,11 @@ public class Notes extends AppCompatActivity {
                                 filter.add(n);
                         }
                         notesAdapter.filtered = filter;
+                        FILTER = 2;
                         break;
                     case 3:
                         notesAdapter.filtered = new ArrayList<Note>(notesAdapter.original);
+                        FILTER = 3;
                         break;
                 }
                 notesAdapter.notifyDataSetChanged();

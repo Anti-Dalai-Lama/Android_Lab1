@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/searchView"
-        android:title="Search"
+        android:title="@string/search"
         android:icon="@drawable/ic_search"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always">
     </item>
 
     <item android:id="@+id/filter_notes"
-        android:title="Filter"
+        android:title="@string/filter"
         android:icon="@drawable/ic_filter_list_white_24dp"
-        app:showAsAction="always">
+        app:showAsAction="ifRoom">
     </item>
     <item android:id="@+id/add_note_icon"
-        android:title="Add"
+        android:title="@string/create"
         android:icon="@drawable/ic_note_add_white_24dp"
         app:showAsAction="always">
     </item>

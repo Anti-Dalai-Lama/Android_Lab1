@@ -173,7 +173,7 @@ public class CreateNote extends AppCompatActivity implements DatePickerDialog.On
                 startActivity(myIntent);
             }
             else{
-                Toast.makeText(this, "There is no picture in this note", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.nopic, Toast.LENGTH_LONG).show();
             }
         }
     }

@@ -29,6 +29,7 @@
     <string name="note">Note</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="picture">Picture</string>
 
     <string name="fillemptyfields">Fill empty fields</string>
     <string name="nopic">There is no picture in this note</string>
@@ -38,7 +39,10 @@
     <string name="medium">Medium</string>
     <string name="low">Low</string>
     <string name="none">None</string>
-    <string name="filter">Filter</string>
+    <string name="tofilter">Filter</string>
     <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="filter">Filter</string>
+    <string name="search">Search</string>
 
 </resources>
